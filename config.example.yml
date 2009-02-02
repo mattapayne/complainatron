@@ -1,0 +1,7 @@
+--- 
+:test: 
+  :connection_string: test
+:development: 
+  :connection_string: test
+:production: 
+  :connection_string: test
