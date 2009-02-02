@@ -20,7 +20,9 @@ get "/api/complaints" do
 end
 
 get "/api/categories" do
-  Complainatron::Complaint.all.map {|c| {:category => c.category} }.uniq.to_json
+  @categories = Complainatron::Complaint.all.map {|c| c.category }.uniq
+  @results = @categories.inject([]) {|array, entry| array << { :category => entry }; array }
+  @results.to_json
 end
 
 post "/api/complaints/create" do
