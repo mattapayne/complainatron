@@ -10,9 +10,8 @@ get "/api/complaints" do
   if params["page"] && params["max"]
     @complaints = Complainatron::Complaint.all(:page => params["page"], :max => params["max"])
   else
-    @complaints = Complainatron::Complaint.all.to_json
+    @complaints = Complainatron::Complaint.all
   end
-  puts "#{@complaints.inspect}"
   @complaints.to_json
 end
 
