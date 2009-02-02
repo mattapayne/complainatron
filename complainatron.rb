@@ -6,6 +6,10 @@ configure do
   set :connection_string => Complainatron::Config.connection_string(Sinatra::Application.environment)
 end
 
+get "/" do
+  "Coming soon"
+end
+
 get "/api/complaints" do
   if params["page"] && params["max"]
     @complaints = Complainatron::Complaint.all(:page => params["page"], :max => params["max"])
