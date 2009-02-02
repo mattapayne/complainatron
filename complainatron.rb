@@ -20,31 +20,39 @@ get "/api/categories" do
 end
 
 post "/api/complaints/create" do
-  @complaint = Complainatron::Complaint.new(params["complaint"])
-  if @complaint.save
-    status 201
-  else
+  unless params["complaint"]
     status 400
+  else
+    @complaint = Complainatron::Complaint.new(params["complaint"])
+    if @complaint.save
+      status 201
+    else
+      status 400
+    end
   end
 end
 
-post "/api/complaints/vote/:id" do
-  @complaint = Complainatron::Complaint.find(params["id"])
-  if @complaint
-    if params["vote_for"] == "false"
+post "/api/complaints/vote" do
+  unless params["id"]
+    status 401
+  else
+    @complaint = Complainatron::Complaint.find(params["id"])
+    if @complaint
+      if params["vote_for"] == "false"
         if @complaint.vote_against
           status 201
         else
           status 400
         end
-    else
-      if @complaint.vote_for
-        status 201
       else
-        status 400
+        if @complaint.vote_for
+          status 201
+        else
+          status 400
+        end
       end
+    else
+      status 404
     end
-  else
-    status 404
   end
 end
