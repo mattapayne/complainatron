@@ -12,6 +12,10 @@ module Complainatron
         build(attributes)
       end
     
+      def save
+        self.class.save(self)
+      end
+      
       class << self
       
         def all(options={})
@@ -40,6 +44,16 @@ module Complainatron
           end
           found
         end
+        
+        def save(obj)
+          with_db do |db|
+            unless obj.id
+              db[table].insert(obj.send(:as_hash))
+            else
+              db[table].filter(:id => obj.id).update(obj.send(:as_hash))
+            end
+          end
+        end
       
         private
       
@@ -50,6 +64,14 @@ module Complainatron
       end
     
       private
+      
+      def as_hash
+        {
+          :category => self.category, :complaint => self.complaint, :date_submitted => self.date_submitted,
+          :submitted_by => self.submitted_by, :latitude => self.latitude, :longitude => self.longitude,
+          :votes_for => self.votes_for, :votes_against => self.votes_against
+        }
+      end
     
       def build(attributes)
         attributes.each do |attr_name, attr_value|

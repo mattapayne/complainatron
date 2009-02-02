@@ -14,8 +14,8 @@ class CreateComplaints < Sequel::Migration
       varchar :latitude
       timestamp :date_submitted
       varchar :submitted_by
-      integer :vote_for
-      integer :vote_against
+      integer :votes_for
+      integer :votes_against
     end
   end
   

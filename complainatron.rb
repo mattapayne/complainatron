@@ -24,15 +24,15 @@ get "/api/categories" do
 end
 
 post "/api/complaints/create" do
-  unless params["complaint"]
-    status 400
+  @complaint = Complainatron::Complaint.new()
+  @complaint.category = params["category"]
+  @complaint.complaint = params["complaint"]
+  @complaint.date_submitted = params["date_submitted"]
+  @complaint.submitted_by = params["submitted_by"]
+  if @complaint.save
+    status 201
   else
-    @complaint = Complainatron::Complaint.new(params["complaint"])
-    if @complaint.save
-      status 201
-    else
-      status 400
-    end
+    status 400
   end
 end
 
