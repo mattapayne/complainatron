@@ -7,9 +7,9 @@ module Complainatron
     attr_accessor :id, :category, :complaint, :date_submitted, 
       :latitude, :longitude, :submitted_by, :votes_for, :votes_against
     
-      def initialize(attributes)
+      def initialize(attributes=nil)
         @attributes = attributes
-        build(attributes)
+        build(attributes) if attributes
       end
     
       def save
