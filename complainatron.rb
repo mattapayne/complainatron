@@ -40,7 +40,7 @@ end
 
 post "/api/complaints/vote" do
   unless params["id"]
-    status 401
+    status 400
   else
     @complaint = Complainatron::Complaint.find(params["id"])
     if @complaint
