@@ -16,6 +16,16 @@ module Complainatron
         self.class.save(self)
       end
       
+      def vote_against
+        self.votes_against = self.votes_against.to_i + 1
+        self.save
+      end
+      
+      def vote_for
+        self.votes_for = self.votes_for.to_i + 1
+        self.save
+      end
+      
       class << self
       
         def all(options={})
