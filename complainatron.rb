@@ -39,26 +39,16 @@ post "/api/complaints/create" do
 end
 
 post "/api/complaints/vote" do
-  unless params["id"]
-    status 400
-  else
+  if params["id"]
     @complaint = Complainatron::Complaint.find(params["id"])
-    if @complaint
-      if params["vote_for"] == "false"
-        if @complaint.vote_against
-          status 201
-        else
-          status 400
-        end
-      else
-        if @complaint.vote_for
-          status 201
-        else
-          status 400
-        end
-      end
+    if params["vote_for"] == "false"
+      @complaint.vote_against
+      status 201
     else
-      status 404
+      @complaint.vote_for
+      status 201
     end
+  else
+    status 400
   end
 end
