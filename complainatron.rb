@@ -6,8 +6,12 @@ configure do
   set :connection_string => Complainatron::Config.connection_string(Sinatra::Application.environment)
 end
 
+helpers do
+  include Complainatron::Helpers
+end
+
 get "/" do
-  "Coming soon"
+  erb :home
 end
 
 get "/api/complaints" do
