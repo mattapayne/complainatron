@@ -11,6 +11,8 @@ helpers do
 end
 
 get "/" do
+  @complaint_count = Complainatron::Complaint.count
+  @categories = Complainatron::Complaint.categories
   erb :home
 end
 

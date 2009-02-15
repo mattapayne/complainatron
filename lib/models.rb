@@ -27,6 +27,26 @@ module Complainatron
       end
       
       class << self
+        
+        def count
+          count = 0
+          with_db do |db|
+            count = db[table].count
+          end
+          count
+        end
+        
+        def categories
+          categories = []
+          with_db do |db|
+            data = db[table].select(:category)
+            categories = data.inject([]) do |arr, rec|
+              arr << rec[:category]
+              arr
+            end
+          end
+          categories.uniq
+        end
       
         def all(options={})
           all = []

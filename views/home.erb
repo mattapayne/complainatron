@@ -1,3 +1,16 @@
 <div id="home">
-	Welcome to the Complainatron home page!! Under construction ...
+	Welcome to the Complainatron home page!!
+	<div class="stats">
+		<div>
+			To date, <%= h(@complaint_count) %> complaint<%= @complaint_count != 1 ? "s" : "" %> have been submitted
+		</div>
+		<div>
+			<h1>Complaint Categories</h1>
+			<table>
+			<% for category in @categories %>
+				<tr><td><%= h(category) %></td></tr>
+			<% end %>
+			</table>
+		</div>
+	</div>
 </div>

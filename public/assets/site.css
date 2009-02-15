@@ -1,0 +1,96 @@
+/* standard elements */
+html {min-height: 100%;}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+div.center
+{
+    text-align:center; 
+}
+
+.clear
+{
+    margin:0;
+    padding:0;
+    clear:both;
+    height:1px;
+}
+
+a:hover {color: #06C;}
+a img {border: none;}
+
+p.small
+{
+    font-size:8pt;
+}
+
+body 
+{
+    color: Black;
+    font: normal 14pt Verdana,sans-serif;
+}
+
+p, ul {padding-bottom: 1.0em;}
+
+ul
+{
+    margin-left:25px;
+    margin-top:10px;
+}
+
+h1 {font: normal 1.6em Verdana,sans-serif;}
+h2 {font: normal 1.4em Verdana, sans-serif;}
+h3 {font: normal 1.2em Verdana,sans-serif;}
+
+h1,h2,h3 {color: Black;}
+
+#body
+{
+    font-family:verdana;
+    width:90%;
+    margin-left:5%;
+    padding-top:15px;
+    padding-bottom:10px;
+    min-height:450px;
+}
+
+form
+{
+    margin:0;
+    padding:0;
+}
+
+.stats
+{
+	text-align:center;
+}
+
+#footer
+{
+    padding-bottom:5px;
+    padding-top:5px;
+    font-size:10px;
+    text-align:center;
+    background-color:white;
+    color:black;
+}
+
+div.divider
+{
+    background:#FFFFFF url(footer-bg.png) repeat-x scroll 0% 0%;
+}
+
+#header
+{
+    background-color:white;
+	text-align:center;
+}
+
+#header a img
+{
+	padding-left:50px;
+}
+
