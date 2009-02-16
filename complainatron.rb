@@ -32,11 +32,7 @@ get "/api/categories" do
 end
 
 post "/api/complaints/create" do
-  @complaint = Complainatron::Complaint.new()
-  @complaint.category = params["category"]
-  @complaint.complaint = params["complaint"]
-  @complaint.date_submitted = Time.now
-  @complaint.submitted_by = params["submitted_by"]
+  @complaint = Complainatron::Complaint.new(params.merge(:date_submitted => Time.now))
   if @complaint.save
     status 201
   else
