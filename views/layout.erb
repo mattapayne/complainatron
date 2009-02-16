@@ -7,6 +7,9 @@
 <body>
 	<div id="header">
   		<%= image_link_to("complainatron_logo.png", "/") %>
+		<div id="menu">
+			<%= render_menu %>
+		</div>
   	</div>
   	<div id="body">
     	<%= yield %>
@@ -14,7 +17,6 @@
   	<div id="footer">
     	<div>
       		Subscribe to the Complainatron rss feed 
-      	
     	</div>
     	Site developed by <%= link_to("MPC", "http://mattpayne.ca") %> using <%= link_to("Sinatra", "http://sinatra.rubyforge.org") %> (an alternative Ruby web framework). (2008)
   	</div>

@@ -63,9 +63,16 @@ form
     padding:0;
 }
 
-.stats
+div.stats div
 {
-	text-align:center;
+	padding:15px;
+	background-color:#DCDCDC;
+}
+
+.label
+{
+	font-weight:bold;
+	font-size:18px;
 }
 
 #footer

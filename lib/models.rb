@@ -26,6 +26,10 @@ module Complainatron
         self.save
       end
       
+      def summary
+        "#{self.complaint} - Submitted: #{self.date_submitted}"
+      end
+      
       class << self
         
         def count
@@ -49,12 +53,15 @@ module Complainatron
         end
       
         def all(options={})
+          options = options.symbolize_keys
           all = []
           page = options[:page] ? options[:page].to_i : 1
           per_page = options[:max] ? options[:max].to_i : nil
           with_db do |db|
             if page && per_page
               data = db[table].paginate(page, per_page)
+            elsif per_page
+              data = db[table].limit(per_page)
             else
               data = db[table].all
             end

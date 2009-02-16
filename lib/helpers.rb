@@ -4,6 +4,17 @@ module Complainatron
     
     alias_method :h, :escape_html
     
+    def render_menu
+      menu = ""
+      unless request.path_info == "/api"
+        menu += link_to("API", "/api")
+      end
+      unless request.path_info == "/"
+        menu += link_to("Home", "/")
+      end
+      menu
+    end
+    
     def link_to(link_text, url, html_options={})
        bold = html_options.delete(:bold)
        return "<a href=\"#{url}\" #{html_options.to_html_options}>#{link_text}</a>" unless bold

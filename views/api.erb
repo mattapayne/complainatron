@@ -1,0 +1,43 @@
+<div id="api">
+	<p>The Complainatron API is incredibly simple. There is no need for an API key to use it. Below is a list of the available services provided. All responses are in JSON format.</p>
+	<p>
+		<ul>
+			<li><%= link_to("http://complainatron.ca/api/complaints", "http://complainatron.ca/api/complaints") %>
+				<br />
+				This is a GET request that returns a list of Complaints. The following optional parameters are supported:
+				<ul>
+					<li>max: The maximum number of complaints to return.</li>
+					<li>page: Used for getting paged results.</li>
+				</ul>
+			</li>
+			<li>
+				<%= link_to("http://complainatron.ca/api/categories", "http://complainatron.ca/api/categories") %>
+				<br />
+				This is a GET request that returns an array of complaint categories
+			</li>
+			<li style="padding-top:15px;">
+				http://complainatron/api/complaints/create
+				<br />
+				This is a POST request that creates a new Complaint with the following parameters:
+				<ul>
+					<li>complaint: a string</li>
+					<li>category: a string</li>
+					<li>submitted_by: a string</li>
+					<li>longitude: a string representing the longitude as a decimal value</li>
+					<li>latitude: a string representing the latitude as a decimal value</li>
+				</ul>
+				Errors are indicated with a 400 status. Success is indicated with a 201 status.
+			</li>
+			<li  style="padding-top:15px;">
+				http://complainatron/api/complaints/vote"
+				<br />
+				This is a POST request that accepts a vote for or against a Complaint. The following parameters are used:
+				<ul>
+					<li>id: The id of the complaint</li>
+					<li>vote_for: a boolean value. If true, the vote is in favor of the Complaint, otherwise it is against.</li>
+				</ul>
+				Errors are indicated with a 400 status. Success is indicated with a 201 status.
+			</li>
+		</ul>
+	</p>
+</div>

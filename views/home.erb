@@ -12,11 +12,19 @@
 			To date, <%= h(@complaint_count) %> complaint<%= @complaint_count != 1 ? "s" : "" %> have been submitted
 		</div>
 		<div>
-			<h1>Complaint Categories</h1>
+			<span class="label">Complaint Categories</span>
 			<ul>
 			<% for category in @categories %>
 				<li><%= h(category) %></li>
 			<% end %>
+			</ul>
+		</div>
+		<div>
+			<span class="label">Recent Complaints</span>
+			<ul>
+				<% for c in @complaints %>
+					<li><%= h(c.complaint) %></li>
+				<% end %>
 			</ul>
 		</div>
 	</div>

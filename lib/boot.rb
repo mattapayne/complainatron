@@ -35,6 +35,14 @@ class Hash
     end
     arr.join(" ")
   end
+  
+  def symbolize_keys
+    tmp = {}
+    self.each do |k,v|
+      tmp[k.to_sym] = v
+    end
+    tmp
+  end
 	
 end
 

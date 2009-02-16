@@ -13,16 +13,16 @@ end
 get "/" do
   @complaint_count = Complainatron::Complaint.count
   @categories = Complainatron::Complaint.categories
+  @complaints = Complainatron::Complaint.all(:max => 3)
   erb :home
 end
 
+get "/api" do
+  erb :api
+end
+
 get "/api/complaints" do
-  if params["page"] && params["max"]
-    @complaints = Complainatron::Complaint.all(:page => params["page"], :max => params["max"])
-  else
-    @complaints = Complainatron::Complaint.all
-  end
-  @complaints.to_json
+    @complaints = Complainatron::Complaint.all(params).to_json
 end
 
 get "/api/categories" do
