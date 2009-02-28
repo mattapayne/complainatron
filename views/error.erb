@@ -1,0 +1,10 @@
+<div id="error">
+	<% if @error_type == "error" %>
+		An unexpected error occurred. Please <%= email_link_to('email', 
+		Complainatron::Config.admin_email(Sinatra::Application.environment)) %> us and let us know about it.
+	<% elsif @error_type == "not_found" %>
+		Sorry, whatever you were looking for was not found.
+		Click  <%= email_link_to('here', 
+		Complainatron::Config.admin_email(Sinatra::Application.environment)) %> if you really have a problem with 				  		     this.
+	<% end %>
+</div>

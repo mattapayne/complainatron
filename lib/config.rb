@@ -10,6 +10,10 @@ module Complainatron
         value_for_key(env.to_sym, :connection_string)
       end
       
+      def admin_email(env)
+        value_for_key(env.to_sym, :admin_email)
+      end
+      
       private
       
       def value_for_key(env, key)

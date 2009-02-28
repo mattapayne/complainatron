@@ -1,7 +1,10 @@
 --- 
 :test: 
   :connection_string: test
+  :admin_email: someone@test.ca
 :development: 
   :connection_string: test
+  :admin_email: someone@test.ca
 :production: 
   :connection_string: test
+  :admin_email: someone@test.ca

@@ -6,6 +6,16 @@ configure do
   set :connection_string => Complainatron::Config.connection_string(Sinatra::Application.environment)
 end
 
+not_found do
+  @error_type = "not_found"
+  erb :error
+end
+
+error do
+  @error_type = "error"
+  erb :error
+end
+
 helpers do
   include Complainatron::Helpers
 end
@@ -22,13 +32,11 @@ get "/api" do
 end
 
 get "/api/complaints" do
-    @complaints = Complainatron::Complaint.all(params).to_json
+  @complaints = Complainatron::Complaint.all(params).to_json
 end
 
 get "/api/categories" do
-  @categories = Complainatron::Complaint.all.map {|c| c.category }.uniq
-  @results = @categories.inject([]) {|array, entry| array << { :category => entry }; array }
-  @results.to_json
+  @categories = Complainatron::Complaint.categories.to_json
 end
 
 post "/api/complaints/create" do
@@ -43,14 +51,9 @@ end
 post "/api/complaints/vote" do
   if params["id"]
     @complaint = Complainatron::Complaint.find(params["id"])
-    if params["vote_for"] == "false"
-      @complaint.vote_against
-      status 201
-    else
-      @complaint.vote_for
-      status 201
-    end
+    @complaint.vote(params["vote_for"])
+    status 201
   else
-    status 400
+    status 404
   end
 end

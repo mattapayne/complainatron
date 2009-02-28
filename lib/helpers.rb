@@ -6,11 +6,10 @@ module Complainatron
     
     def render_menu
       menu = ""
-      unless request.path_info == "/api"
-        menu += link_to("API", "/api")
-      end
-      unless request.path_info == "/"
+      if !["/"].include?(request.path_info)
         menu += link_to("Home", "/")
+      elsif request.path_info == "/"
+        menu += link_to("API", "/api")
       end
       menu
     end

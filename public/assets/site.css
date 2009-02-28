@@ -101,3 +101,13 @@ div.divider
 	padding-left:50px;
 }
 
+#error
+{
+	font-size:70%;
+	text-align:center;
+}
+
+li.padded_top
+{
+	padding-top:15px;
+}

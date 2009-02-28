@@ -26,6 +26,14 @@ module Complainatron
         self.save
       end
       
+      def vote(vote_type)
+        if vote_type == "false"
+          vote_against
+        else
+          vote_for
+        end
+      end
+      
       def summary
         "#{self.complaint} - Submitted: #{self.date_submitted}"
       end
@@ -49,7 +57,7 @@ module Complainatron
               arr
             end
           end
-          categories.uniq
+          categories.uniq.inject([]) {|array, entry| array << { :category => entry }; array }
         end
       
         def all(options={})
