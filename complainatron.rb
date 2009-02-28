@@ -32,18 +32,22 @@ get "/api" do
 end
 
 get "/api/complaints" do
+  status 200
   @complaints = Complainatron::Complaint.all(params).to_json
 end
 
 get "/api/categories" do
+  status 200
   @categories = Complainatron::Complaint.categories.to_json
 end
 
 post "/api/complaints/create" do
   @complaint = Complainatron::Complaint.new(params.merge(:date_submitted => Time.now))
   if @complaint.save
+    #created
     status 201
   else
+    #problem - return a JSON-ified collection of errors
     status 400
   end
 end
@@ -54,6 +58,6 @@ post "/api/complaints/vote" do
     @complaint.vote(params["vote_for"])
     status 201
   else
-    status 404
+    status 400
   end
 end
