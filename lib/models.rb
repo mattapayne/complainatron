@@ -67,11 +67,11 @@ module Complainatron
           per_page = options[:max] ? options[:max].to_i : nil
           with_db do |db|
             if page && per_page
-              data = db[table].order(:date_submitted).paginate(page, per_page)
+              data = db[table].order(:date_submitted.desc).paginate(page, per_page)
             elsif per_page
-              data = db[table].order(:date_submitted).limit(per_page)
+              data = db[table].order(:date_submitted.desc).limit(per_page)
             else
-              data = db[table].order(:date_submitted)
+              data = db[table].order(:date_submitted.desc)
             end
             all = data.inject([]) do |arr, row|
               arr << new(row)
