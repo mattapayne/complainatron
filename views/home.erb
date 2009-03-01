@@ -15,7 +15,7 @@
 			<span class="label">Complaint Categories</span>
 			<ul>
 			<% for category in @categories %>
-				<li><%= h(category) %></li>
+				<li><%= h(category[:category]) %></li>
 			<% end %>
 			</ul>
 		</div>
