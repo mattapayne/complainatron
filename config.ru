@@ -1,10 +1,12 @@
 require 'rubygems'
 require 'sinatra'
 
-set :env,       :production
+local_path = File.dirname(__FILE__)
+
+set :environment,       :production
 disable :run, :reload
 
-require 'complainatron'
+require File.join(local_path, 'complainatron')
 
 log = File.new("sinatra.log", "a")
 STDOUT.reopen(log)
